@@ -45,3 +45,4 @@ frase = f"TU nueva contraseña es {password}"
 print(frase)
 print(f"El numero utilizado para crearla: {primer_numero}")
 
+print(dir(crear_contraseña_random))
