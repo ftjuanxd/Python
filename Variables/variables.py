@@ -21,3 +21,7 @@ print(bienvenida)
 
 #operadores de pertenencia (in y not in)
 print("d" in bienvenida)#in se utiliza para saber si algo esta en una variable
+
+cadena = "0123456789"
+#slicing donde inicia : donde termina 
+print(cadena[:3])
