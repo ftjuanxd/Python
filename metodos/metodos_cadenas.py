@@ -33,7 +33,7 @@ contar_caracteres = len(cadena1)
 empieza_con = cadena1.startswith("Hola")
 
 #verificamos si una cadena termina con otra cadena dada, si es asi devuelve true
-termina_con = cadena1.startswith("Zone")
+termina_con = cadena1.endswith("Zone")
 
 #reemplaza un pedazo de la cadena dada por otra dada, si el valor 1 se, encuentra en la cadena original, reemplaza el valor de 1 de la misma por el valor 2
 cadena_nueva = cadena1.replace(","," ")
