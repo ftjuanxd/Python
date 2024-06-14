@@ -6,3 +6,6 @@ for i in enumerate(tablero):
 	for j in enumerate(content):
 		indice_j = j[0]
 		print(indice_i,indice_j)
+
+
+print(tablero)
