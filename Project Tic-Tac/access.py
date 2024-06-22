@@ -1,40 +1,41 @@
+import os 
+from random import randomrange as rm
+import packages.design as ds
 board = [[1,2,3],[4,"X",6],[7,8,9]]
-def line():   
-    for i in range(25):
-        if i == 0 or i == 8 or i == 16 or i == 24:
-            print("+",end="")
-        else:
-            print("-",end="")
-    print("\n")
-def side(board):
-    for j in range(3):
-        for i in range(25):
-            if i == 0 or i == 8 or i == 16 or i == 24:
-                print("|",end="")
-            elif i == 4 and j == 1 or i == 12 and j == 1 or i == 20 and j == 1: 
-                print(board[0][0],end="")
-                board[0].remove(board[0][0])
-            else:
-                print(" ",end="")
-        print("\n")
 
-def display_board(board):
-    for i in range(3):
-        line()
-        side(board)
-        del board[0]
-    line()
-def play(board,px=-1,py=-1):
-    if px > 0 and py < 4 and py > 0 and py < 4:
-        if board[px][py].isdigit():
-            board[px][py]= "O"
-            return board
-        else:
-            return False
-    elif px ==-1 and py == -1:
-        side(board)
+def play(board,px):#esta funcion debe ser llamada desde el menu y llamar a display
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == px:
+                board[i][j]= "O"
+    for CPU_i in range(len(board)):
+        for CPU_j in range(len(board)):
+            if board[CPU_i][CPU_j] == rm(1,10):
+                board[CPU_i][CPU_j]= "X"
+    ds.display_board(board)
+def clean():
+    # Para limpiar la consola en Windows
+    if os.name == 'nt':
+        os.system('cls')
+    # Para limpiar la consola en Unix/Linux/Mac
     else:
-        return True
+        os.system('clear')
 def menu ():
     opc = input("Do you Wish to Begin? S/N: ").lower()
     if opc == "s":
+        px = int()
+        while True:
+            try:
+                ds.display_board(board)
+                px = int(input("Type Position: "))
+                break
+            except ValueError:
+                print("Type only Integer Numbers.")
+                clean()
+        if px < 0 and px > 10:
+            raise("The position is wrong.")
+        else:
+            play(board,px)
+    else:
+        print("Thanks, Bye.")
+menu()
