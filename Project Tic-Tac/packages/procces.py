@@ -57,10 +57,28 @@ def Test(board,pointer,size):
                 print("User Winner")
             return True
 
+    if all(cell in pointer for row in board for cell in row):
+        print("It's tie! ")
+        return True
+
     # Si no hay ganador
     return False
-#Play User
 
+
+def Template(board):
+    while True:
+        try:
+            ds.display_board(board)
+            px = int(input("Type Position (1-9): "))
+            if px < 1 or px > 9:
+                print("Position Wrong. Type a number between 1 and 9.")
+                continue  # Volver a pedir la posición
+            return px  # Retornar la posición válida
+        except ValueError:
+            print("Type only integer numbers.")
+            clean()  # Limpiar la pantalla o realizar alguna acción de limpieza
+
+#Play User
 def play_user(board,px,pointer,size):#esta funcion debe ser llamada desde el menu y llamar a display
     for i in range(size):
         for j in range(len(board[i])):

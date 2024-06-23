@@ -8,24 +8,16 @@ def menu ():
     opc = input("Do you Wish to Begin? S/N: ").lower()
     if opc == "s":
         while not pr.Test(board,pointer,size):
-                px = int()
-                while True:
-                    try:
-                        ds.display_board(board)
-                        px = int(input("Type Position: "))
-                        break
-                    except ValueError:
-                        print("Type only Integer Numbers.")
-                        pr.clean()
-                if px <= 0 and px >= 10:
-                    raise("The position is wrong.")
-                    pr.clean()
-                else:
-                    pr.play_user(board,px,pointer,size)
-                    if not pr.Test(board,pointer,size):
-                        print("Turn CPU")
-                        pr.play_cpu(board,pointer,size)
-                    else:
-                        break
+            
+                pr.play_user(board,pr.Template(board),pointer,size)
+            
+                if pr.Test(board,pointer,size):
+                        return "End Game"
+            
+                print("Turn CPU")
+                pr.play_cpu(board,pointer,size)
+                
+                if pr.Test(board,pointer,size):
+                        return "End Game"
     else:
         print("Thanks, Bye.")
