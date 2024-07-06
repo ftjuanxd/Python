@@ -26,24 +26,13 @@ class Calculadora (Numbers):
         #Request a Number
         return int(input("Which number do you choose?: "))
     #Methods of Calculator
-    def Plus(self):
-        plus = sum([x for x in self.numbers])
-        return f"The results plus of numbers is: {plus}"
-        
-    def Less(self):
-        less -=[i for i in self.numbers]
-        return f"The results less of numbers is: {less}"
     
-    def Times(self):
-        times *= [x for x in self.numbers]
-        return f"The results times of numbers is: {times}"
-    
-    def Division(self):             
-        divi /= [x for x in self.numbers]
-        if 0 in self.numbers:
-            return "No se puede dividir por cero."
-        return f"The results division of numbers is {divi}"
-    
+    def operac(list,opc):
+        res = list[0]
+        for i in list[1:-1]:
+            exp = str(i)+opc+str(res)
+            res = eval(exp)
+        return f'The results of operation is:{res}'
     def Even_Odd(self):
         results = []
         for number in self.numbers:
@@ -58,14 +47,21 @@ class Calculadora (Numbers):
     def Mayor_Menor_que(self):
         return f"The largest number is: {max(self.numbers)} and the smallest number is: {min(self.numbers)}"
     
-list = ["Plus","Less","Times","Division","Even_Odd","Mayor_Menor_que"]
+dict = {
+    '+':"Plus",
+    '-':"Less",
+    '*':'Times',
+    '/':'Division',
+    '%':'Mod',
+    '**':'Potencia'
+}
 
 obj_num = Numbers()
 obj_num.Give_Numbers()
 
 calc = Calculadora(obj_num.numbers)
 
-opc = calc.menu(list)
+opc = calc.menu(dict)
 
 nums = []
 if 1 <= opc <= len(list):     
@@ -74,3 +70,4 @@ if 1 <= opc <= len(list):
     print(method())
 else:
     print("Kind Of")    
+    #modificar el metodo para mostrar y reccorer el diccionario y terminar de organizar los nuevos cambios
