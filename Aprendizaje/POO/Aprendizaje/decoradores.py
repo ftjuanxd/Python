@@ -20,3 +20,11 @@ def saludo():
     print("Hola pende")
     
 saludo()
+
+def deco(funcion):
+    funcion()
+    print("jode")
+    
+@deco
+def hola():
+    print("hola")

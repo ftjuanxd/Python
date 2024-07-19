@@ -65,4 +65,3 @@ if value != None:
             break
 else:
     print("Kind Of")    
-    #modificar el metodo para mostrar y reccorer el diccionario y terminar de organizar los nuevos cambios
