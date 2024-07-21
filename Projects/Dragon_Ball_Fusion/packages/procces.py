@@ -2,33 +2,38 @@ from . import Personajes as p
 from . import methods as mt
 
 def Main():
-    pj = p.Personaje()
+    array = []
     while True:
         opc = mt.Menu()
         if opc == 1:
-            pj.Crear_Personaje()            
-        elif opc == 2:
             while True:
-                name1 = input("\nEscriba el nombre del primer personaje: ")
-                if pj.mostrar_personaje(name1) == False:
-                    print("El nombre digitado no existe dentro de la base de datos. Intentalo Nuevamente.")
-                    continue
-                name2 = input("\nEscriba el nombre del Segundo personaje: ")
-                if pj.mostrar_personaje(name2) == False:
-                    print("El nombre digitado no existe dentro de la base de datos. Intentalo Nuevamente.")
-                    continue
-                nuevo = pj.personaje[name1] + pj.personaje[name2]
-                pj.mostrar_personaje(nuevo)
-                break
-        elif opc == 3:
-            if pj.mostrar_personaje() == {}:
-                print("No hay Personajes")
+                try:
+                    name = input("Type the name of the character: ").lower()
+                    speed = int(input("Type the speed of the character: "))
+                    power = int(input("Type the power of the character: "))
+                    energy = int(input("Type the energy of the character:"))
+                    character = p.Personaje(name,speed,power,energy)
+                    date = [len(array)+1,character,name,speed,power,energy]
+                    array.append(date)
+                    break
+                except ValueError:
+                    print("The speed,power and energy are value numeric") 
+                except:
+                    print("Mistake with the creating of the character")
+        elif opc == 2:
+            char1 = input("Type the name of the first Character: ")            
+            char2 = input("Type the name of the first Character: ")   
+            if char1 in array and char2 in array:
+                print("Logro")         
             else:
-                print(pj.mostrar_personaje())
+                print("Nol")
+        elif opc == 3:
+            for i in range(len(array)):
+                print(f"{i+1}.{array[i][2]}.")
+            continue
         elif opc == 4:
             print("Gracias Por Jugar. XD")
             break
         else:
             print("La opcion digitada no existe intentelo otra vez. Gracias")
-            continue
         mt.clear_Screen()
